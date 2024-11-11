@@ -1,23 +1,21 @@
 {{ define "body" }}
-    <body class="{{ if .Site.Params.backgroundImage }} background-image" style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
-{{ end }}
 
-{{ define "main" }}
-    <main>
+<body class="{{ if .Site.Params.backgroundImage }} background-image"
+    style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
+    {{ end }}
+
+    {{ define "main" }}
+    <main aria-role="main">
         <div>
-            {{ if .Site.Params.Portrait.Path }}
-               <img src="{{ .Site.Params.Portrait.Path }}" class="circle" alt="{{ .Site.Params.Portrait.Alt }}" style="max-width:{{ .Site.Params.Portrait.MaxWidth }}" />
-            {{ end }}
-
-            <h1>{{ .Site.Title }}</h1>
-
-            {{ partial "subtitle.html" . }}
-
+            <img alt="{{.Site.Author.name}}" height="150" src="{{ .Site.Params.profileImage }}"
+                style="display: block;margin-left: auto;margin-right: auto;border-radius: 50%;" width="150" />
+            <h1 style="margin-top: 1rem; margin-bottom: 0;">{{ .Site.Author.name }}</h1>
+            <p style="margin-top: 0;">{{ .Site.Params.homeSubtitle | safeHTML }}</p>
             {{- with .Site.Params.social }}
-                <div>
-                    {{ partial "social-icons.html" . }}
-                </div>
+            <div>
+                {{ partial "social-icons.html" . }}
+            </div>
             {{- end }}
         </div>
     </main>
-{{ end }}
+    {{ end }}
