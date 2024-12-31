@@ -2,6 +2,15 @@
 <html lang="{{ .Site.Language }}">
     <head>
         {{ partial "head.html" . }}
+        {{ if .Site.Params.googleAnalytics }}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YM9DTLGW0"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-6YM9DTLGW0');
+        </script>
+        {{ end }}
     </head>
 
     {{ block "body" . }}
